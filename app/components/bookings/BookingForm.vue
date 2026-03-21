@@ -1,10 +1,85 @@
+<script setup lang="ts">
+import type { Package } from '~/../shared/types/package'
+
+const props = defineProps<{
+  pkg?: Package
+  room?: Room
+}>()
+
+const { user } = useAuth()
+const { createBooking } = useBooking()
+const router = useRouter()
+
+const item = computed(() => props.pkg || props.room)
+
+const loading = ref(false)
+const error = ref('')
+
+const form = reactive({
+  checkIn: '',
+  checkOut: '',
+  guests: {
+    adults: 2,
+    children: 0
+  }
+})
+
+const today = new Date().toISOString().split('T')[0]
+
+const nights = computed(() => {
+  if (!form.checkIn || !form.checkOut) return 0
+  const start = new Date(form.checkIn)
+  const end = new Date(form.checkOut)
+  const diff = end.getTime() - start.getTime()
+  return Math.max(0, Math.ceil(diff / (1000 * 60 * 60 * 24)))
+})
+
+const totalPrice = computed(() => {
+  if (!item.value) return 0
+  return nights.value * item.value.price
+})
+
+const handleSubmit = async () => {
+  if (!item.value) return
+
+  if (!user.value) {
+    router.push('/login?redirect=' + router.currentRoute.value.fullPath)
+    return
+  }
+
+  if (nights.value <= 0) {
+    error.value = 'Please select valid stay dates'
+    return
+  }
+
+  loading.value = true
+  error.value = ''
+
+  const res = await createBooking({
+    packageId: props.pkg?.id,
+    roomId: props.room?.id,
+    checkIn: form.checkIn,
+    checkOut: form.checkOut,
+    guests: form.guests
+  })
+
+  loading.value = false
+
+  if (res.success) {
+    router.push('/dashboard/bookings')
+  } else {
+    error.value = res.error
+  }
+}
+</script>
+
 <template>
   <div class="bg-sand-light p-8 rounded-3xl border border-sand shadow-lg">
     <h3 class="text-2xl font-serif text-driftwood-dark mb-6 flex items-center gap-2">
       <span>🥥</span> Reserve Your Paradise
     </h3>
     
-    <form @submit.prevent="handleSubmit" class="space-y-6">
+    <form v-if="item" @submit.prevent="handleSubmit" class="space-y-6">
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>
           <label class="block text-sm font-bold text-driftwood mb-2 uppercase tracking-wide">Check In ⚓</label>
@@ -51,7 +126,7 @@
         </div>
         <div class="flex justify-between items-center mb-2 text-driftwood">
           <span>Rate per Night</span>
-          <span class="font-bold">${{ pkg.price }}</span>
+          <span class="font-bold">${{ item.price }}</span>
         </div>
         <div class="h-px bg-sand my-3"></div>
         <div class="flex justify-between items-center text-xl">
@@ -73,71 +148,3 @@
     </form>
   </div>
 </template>
-
-<script setup lang="ts">
-import type { Package } from '~/../shared/types/package'
-
-const props = defineProps<{
-  pkg: Package
-}>()
-
-const { user } = useAuth()
-const { createBooking } = useBooking()
-const router = useRouter()
-
-const loading = ref(false)
-const error = ref('')
-
-const form = reactive({
-  checkIn: '',
-  checkOut: '',
-  guests: {
-    adults: 2,
-    children: 0
-  }
-})
-
-const today = new Date().toISOString().split('T')[0]
-
-const nights = computed(() => {
-  if (!form.checkIn || !form.checkOut) return 0
-  const start = new Date(form.checkIn)
-  const end = new Date(form.checkOut)
-  const diff = end.getTime() - start.getTime()
-  return Math.max(0, Math.ceil(diff / (1000 * 60 * 60 * 24)))
-})
-
-const totalPrice = computed(() => {
-  return nights.value * props.pkg.price
-})
-
-const handleSubmit = async () => {
-  if (!user.value) {
-    router.push('/login?redirect=' + router.currentRoute.value.fullPath)
-    return
-  }
-
-  if (nights.value <= 0) {
-    error.value = 'Please select valid stay dates'
-    return
-  }
-
-  loading.value = true
-  error.value = ''
-
-  const res = await createBooking({
-    packageId: props.pkg.id,
-    checkIn: form.checkIn,
-    checkOut: form.checkOut,
-    guests: form.guests
-  })
-
-  loading.value = false
-
-  if (res.success) {
-    router.push('/dashboard/bookings')
-  } else {
-    error.value = res.error
-  }
-}
-</script>

@@ -31,8 +31,8 @@
             <div class="flex items-center gap-3 text-driftwood">
               <span class="text-2xl">🏖️</span>
               <div>
-                <p class="text-xs font-bold uppercase tracking-widest text-driftwood/40 mb-1">Package</p>
-                <p class="font-medium text-sm">{{ (booking as any).package_name || 'Island Package' }}</p>
+                <p class="text-xs font-bold uppercase tracking-widest text-driftwood/40 mb-1">Selection</p>
+                <p class="font-medium text-sm">{{ (booking as any).itemName || (booking as any).package_name || 'Island Package' }}</p>
               </div>
             </div>
 

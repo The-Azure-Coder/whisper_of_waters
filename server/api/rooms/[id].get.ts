@@ -1,23 +1,26 @@
 import { sql } from '../../utils/database'
 
 export default defineEventHandler(async (event) => {
-  // We'll consider a "room" (package) booked if there is a confirmed booking
-  // where today is between check_in and check_out.
+  const id = getRouterParam(event, 'id')
   const today = new Date().toISOString().split('T')[0];
-  
-  const query = `
+
+  const [room] = await sql(`
     SELECT 
       r.id, r.name, r.description, r.price, r.features, r.image_url as "imageUrl", r.status,
       EXISTS (
         SELECT 1 FROM bookings b 
         WHERE b.room_id = r.id 
         AND b.status = 'confirmed'
-        AND b.check_in <= $1 
-        AND b.check_out >= $1
+        AND b.check_in <= $2 
+        AND b.check_out >= $2
       ) as "isBooked"
     FROM rooms r
-    ORDER BY r.price ASC
-  `;
-  
-  return await sql(query, [today]);
+    WHERE r.id = $1
+  `, [id, today])
+
+  if (!room) {
+    throw createError({ statusCode: 404, statusMessage: 'Room not found' })
+  }
+
+  return room
 })
