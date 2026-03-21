@@ -3,6 +3,22 @@ export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
   future: { compatibilityVersion: 4 },
+  app: {
+    head: {
+      title: 'Whisper of Waters | Luxury Tropical Resort',
+      meta: [
+        { charset: 'utf-8' },
+        { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+        { name: 'description', content: 'Experience paradise at Whisper of Waters. Luxury beachfront suites, tropical dining, and unforgettable island adventures.' }
+      ],
+      link: [
+        { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      ],
+      htmlAttrs: {
+        lang: 'en'
+      }
+    }
+  },
   runtimeConfig: {
     databaseUrl: process.env.DATABASE_URL,
     cloudinary: {

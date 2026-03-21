@@ -1,5 +1,5 @@
 <template>
-  <div class="min-h-screen flex flex-col font-sans bg-shell/50">
+  <div class="min-h-screen flex flex-col font-sans bg-shell/50 overflow-x-hidden">
     <LayoutNavbar />
     <main class="flex-grow pt-0">
       <slot />

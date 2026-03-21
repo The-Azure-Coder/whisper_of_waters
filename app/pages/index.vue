@@ -3,7 +3,7 @@
     <HomeHeroCarousel />
     
     <!-- Quick Intro -->
-    <section class="py-20 bg-white relative">
+    <section class="py-20 bg-white relative overflow-hidden">
       <div class="container mx-auto px-4">
         <div class="flex flex-col md:flex-row items-center gap-16">
           <div class="flex-1">
