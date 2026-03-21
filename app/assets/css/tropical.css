@@ -1,0 +1,65 @@
+:root {
+  /* Core Colors */
+  --sand: #F5E6D3;        /* Warm sandy beaches */
+  --sand-light: #FFF5E6;
+  --sand-dark: #E6D7C3;
+  
+  --ocean: #4A90E2;        /* Bright tropical ocean */
+  --ocean-light: #7BB4FF;
+  --ocean-deep: #2C3E8F;
+  
+  --coral: #FF7F6B;        /* Vibrant coral reef */
+  --coral-light: #FF9F8C;
+  --coral-dark: #E65F4B;
+  
+  --palm: #2E8B57;         /* Lush palm leaves */
+  --palm-light: #4CAF7A;
+  --palm-dark: #1B5E3F;
+  
+  --sunset: #FFB347;       /* Golden sunset glow */
+  --sunset-light: #FFD700;
+  --sunset-dark: #F28500;
+  
+  --shell: #FFF0E8;        /* Seashell white */
+  --driftwood: #8B7355;    /* Weathered wood */
+  
+  /* Gradients */
+  --gradient-beach: linear-gradient(135deg, var(--sand), var(--ocean-light));
+  --gradient-sunset: linear-gradient(135deg, var(--sunset), var(--coral), var(--ocean-deep));
+  
+  /* Status Colors */
+  --status-pending: var(--sunset);
+  --status-confirmed: var(--ocean);
+  --status-completed: var(--palm);
+  --status-cancelled: var(--coral-dark);
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  color: var(--driftwood);
+  background-color: var(--shell);
+  margin: 0;
+  padding: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Playfair Display', serif;
+}
+
+.btn-primary {
+  background-color: var(--coral);
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: var(--coral-dark);
+}
+
+.btn-secondary {
+  background-color: var(--ocean);
+  color: white;
+}
+
+.btn-secondary:hover {
+  background-color: var(--ocean-deep);
+}
