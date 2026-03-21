@@ -32,7 +32,12 @@ async function runMigration() {
   }
 
   console.log(`Connecting to database...`);
-  const pool = new pg.Pool({ connectionString: databaseUrl });
+  const pool = new pg.Pool({ 
+    connectionString: databaseUrl,
+    ssl: {
+        rejectUnauthorized: false
+    }
+  });
   const client = await pool.connect();
   
   try {

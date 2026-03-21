@@ -9,7 +9,8 @@
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
     "typecheck": "nuxt typecheck",
-    "db:setup": "node scripts/setup-db.js"
+    "db:setup": "node scripts/setup-db.js",
+    "start": "node .output/server/index.mjs"
   },
   "dependencies": {
     "@types/bcryptjs": "^2.4.6",
