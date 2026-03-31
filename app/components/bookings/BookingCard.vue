@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-white rounded-3xl shadow-xl shadow-sand-dark/20 border border-sand/30 overflow-hidden hover:shadow-2xl transition-all duration-300 group">
+  <div class="bg-white rounded-3xl shadow-xl shadow-sand-dark/10 border border-sand-dark/20 overflow-hidden hover:shadow-2xl hover:shadow-deep-ocean/10 transition-all duration-300 group">
     <!-- Status Stripe -->
     <div class="h-3" :class="statusStripeColor" />
     
@@ -7,7 +7,7 @@
       <div class="flex flex-col md:flex-row justify-between items-start gap-4">
         <div class="flex-1">
           <div class="flex items-center gap-4 mb-3">
-            <h3 class="text-2xl font-serif text-driftwood-dark">Booking #{{ booking.id }}</h3>
+            <h3 class="text-2xl font-serif text-deep-ocean">Booking #{{ booking.id }}</h3>
             <UiBadge :status="booking.status" />
           </div>
           
@@ -29,10 +29,10 @@
             </div>
             
             <div class="flex items-center gap-3 text-driftwood">
-              <span class="text-2xl">🏖️</span>
+              <span class="text-2xl">⚓</span>
               <div>
                 <p class="text-xs font-bold uppercase tracking-widest text-driftwood/40 mb-1">Selection</p>
-                <p class="font-medium text-sm">{{ (booking as any).itemName || (booking as any).package_name || 'Island Package' }}</p>
+                <p class="font-medium text-sm">{{ (booking as any).itemName || (booking as any).package_name || 'Blue Haven Package' }}</p>
               </div>
             </div>
 
@@ -49,7 +49,7 @@
               <span class="text-2xl">💰</span>
               <div>
                 <p class="text-xs font-bold uppercase tracking-widest text-driftwood/40 mb-1">Total Price</p>
-                <p class="text-2xl font-bold text-ocean-deep">${{ booking.totalPrice }}</p>
+                <p class="text-2xl font-bold text-deep-ocean">${{ booking.totalPrice }}</p>
               </div>
             </div>
           </div>
@@ -59,7 +59,7 @@
           <UiButton 
             v-if="canCancel" 
             variant="ghost" 
-            class="text-coral-dark hover:text-white hover:bg-coral-dark font-bold text-sm w-full"
+            class="text-aqua-dark hover:text-white hover:bg-aqua-dark font-bold text-sm w-full"
             @click="$emit('cancel', booking.id)"
           >
             Cancel Stay 🌅
@@ -69,15 +69,15 @@
           <template v-if="isAdmin">
             <UiButton 
               v-if="booking.status === 'pending'" 
-              variant="secondary" 
+              variant="primary" 
               class="w-full text-sm font-bold"
               @click="$emit('update-status', booking.id, 'confirmed')"
             >
-              Confirm Booking 🌊
+              Confirm Stay 🌊
             </UiButton>
             <UiButton 
               v-if="booking.status === 'confirmed'" 
-              variant="primary" 
+              variant="cta" 
               class="w-full text-sm font-bold"
               @click="$emit('update-status', booking.id, 'completed')"
             >
@@ -104,10 +104,10 @@ const canCancel = computed(() => ['pending', 'confirmed'].includes(props.booking
 
 const statusStripeColor = computed(() => {
   switch (props.booking.status) {
-    case 'pending': return 'bg-gradient-to-r from-sunset to-coral'
-    case 'confirmed': return 'bg-gradient-to-r from-ocean to-ocean-light'
-    case 'completed': return 'bg-gradient-to-r from-palm to-palm-light'
-    case 'cancelled': return 'bg-gradient-to-r from-coral-dark to-coral'
+    case 'pending': return 'bg-gradient-to-r from-sunset-gold to-sunset-light'
+    case 'confirmed': return 'bg-gradient-to-r from-aqua to-aqua-light'
+    case 'completed': return 'bg-gradient-to-r from-deep-ocean to-ocean-medium'
+    case 'cancelled': return 'bg-gradient-to-r from-gray-400 to-gray-200'
     default: return 'bg-gray-200'
   }
 })

@@ -1,32 +1,34 @@
 <template>
   <nav :class="[
     'fixed w-full z-50 transition-all duration-300 py-4',
-    isScrolled || isMenuOpen ? 'bg-white/95 backdrop-blur-md shadow-md' : 'bg-gradient-to-r from-ocean/20 to-ocean-light/20 backdrop-blur-sm'
+    isScrolled || isMenuOpen ? 'bg-white/95 backdrop-blur-md shadow-md' : 'bg-gradient-to-r from-deep-ocean/20 to-ocean-medium/20 backdrop-blur-sm'
   ]">
     <div class="container mx-auto px-4 flex justify-between items-center">
       <!-- Logo -->
-      <NuxtLink to="/" class="flex items-center space-x-2 z-50" @click="isMenuOpen = false">
-        <div class="w-10 h-10 bg-coral rounded-full flex items-center justify-center transform hover:rotate-12 transition-all">
-          <span class="text-white text-xl">🌴</span>
-        </div>
-        <span :class="['font-serif font-bold text-lg md:text-xl tracking-tight transition-colors', (isScrolled || isMenuOpen) ? 'text-driftwood' : 'text-white drop-shadow-md']">
-          WHISPER OF WATERS
+      <NuxtLink to="/" class="flex items-center space-x-3 z-50" @click="isMenuOpen = false">
+        <img 
+          src="/images/logo.jpeg" 
+          alt="Blue Haven Hotel Logo" 
+          class="h-12 w-auto object-contain rounded-lg shadow-lg hover:rotate-3 transition-all duration-300"
+        />
+        <span :class="['font-serif font-bold text-lg md:text-xl tracking-tight transition-colors', (isScrolled || isMenuOpen) ? 'text-deep-ocean' : 'text-white drop-shadow-md']">
+          BLUE HAVEN HOTEL
         </span>
       </NuxtLink>
 
       <!-- Desktop Nav Links -->
       <div class="hidden md:flex items-center space-x-8">
-        <NuxtLink to="/rooms" :class="['hover:text-coral transition-colors', isScrolled ? 'text-driftwood' : 'text-white font-medium drop-shadow-md']">Rooms</NuxtLink>
-        <NuxtLink to="/packages" :class="['hover:text-coral transition-colors', isScrolled ? 'text-driftwood' : 'text-white font-medium drop-shadow-md']">Packages</NuxtLink>
-        <NuxtLink to="/gallery" :class="['hover:text-coral transition-colors', isScrolled ? 'text-driftwood' : 'text-white font-medium drop-shadow-md']">Gallery</NuxtLink>
-        <NuxtLink to="/about" :class="['hover:text-coral transition-colors', isScrolled ? 'text-driftwood' : 'text-white font-medium drop-shadow-md']">About</NuxtLink>
+        <NuxtLink to="/rooms" :class="['hover:text-aqua transition-colors', isScrolled ? 'text-driftwood' : 'text-white font-medium drop-shadow-md']">Rooms</NuxtLink>
+        <NuxtLink to="/packages" :class="['hover:text-aqua transition-colors', isScrolled ? 'text-driftwood' : 'text-white font-medium drop-shadow-md']">Packages</NuxtLink>
+        <NuxtLink to="/gallery" :class="['hover:text-aqua transition-colors', isScrolled ? 'text-driftwood' : 'text-white font-medium drop-shadow-md']">Gallery</NuxtLink>
+        <NuxtLink to="/about" :class="['hover:text-aqua transition-colors', isScrolled ? 'text-driftwood' : 'text-white font-medium drop-shadow-md']">About</NuxtLink>
         
         <div v-if="!user" class="flex items-center gap-4 border-l border-white/20 pl-8">
           <NuxtLink to="/login">
             <UiButton variant="ghost" :class="isScrolled ? 'text-driftwood' : 'text-white font-medium drop-shadow-md'">Login</UiButton>
           </NuxtLink>
           <NuxtLink to="/register">
-            <UiButton variant="coral">Join 🌊</UiButton>
+            <UiButton variant="cta">Book Now 🌊</UiButton>
           </NuxtLink>
         </div>
         
@@ -36,7 +38,7 @@
               {{ isAdmin ? '🛡️ Admin' : '🌴 My Stay' }}
             </UiButton>
           </NuxtLink>
-          <button @click="logout" :class="['hover:text-coral-dark text-sm font-bold transition-colors', isScrolled ? 'text-coral' : 'text-white drop-shadow-md']">Logout</button>
+          <button @click="logout" :class="['hover:text-aqua-dark text-sm font-bold transition-colors', isScrolled ? 'text-deep-ocean' : 'text-white drop-shadow-md']">Logout</button>
         </div>
       </div>
       
@@ -47,9 +49,9 @@
         aria-label="Toggle Menu"
       >
         <div class="w-6 h-5 relative flex flex-col justify-between overflow-hidden">
-          <span :class="['w-full h-0.5 transition-all duration-300 transform origin-left', isMenuOpen ? 'rotate-45 translate-x-1' : '', (isScrolled || isMenuOpen) ? 'bg-driftwood' : 'bg-white shadow-sm']"></span>
-          <span :class="['w-full h-0.5 transition-all duration-300', isMenuOpen ? 'opacity-0 -translate-x-full' : '', (isScrolled || isMenuOpen) ? 'bg-driftwood' : 'bg-white shadow-sm']"></span>
-          <span :class="['w-full h-0.5 transition-all duration-300 transform origin-left', isMenuOpen ? '-rotate-45 translate-x-1' : '', (isScrolled || isMenuOpen) ? 'bg-driftwood' : 'bg-white shadow-sm']"></span>
+          <span :class="['w-full h-0.5 transition-all duration-300 transform origin-left', isMenuOpen ? 'rotate-45 translate-x-1' : '', (isScrolled || isMenuOpen) ? 'bg-deep-ocean' : 'bg-white shadow-sm']"></span>
+          <span :class="['w-full h-0.5 transition-all duration-300', isMenuOpen ? 'opacity-0 -translate-x-full' : '', (isScrolled || isMenuOpen) ? 'bg-deep-ocean' : 'bg-white shadow-sm']"></span>
+          <span :class="['w-full h-0.5 transition-all duration-300 transform origin-left', isMenuOpen ? '-rotate-45 translate-x-1' : '', (isScrolled || isMenuOpen) ? 'bg-deep-ocean' : 'bg-white shadow-sm']"></span>
         </div>
       </button>
 
@@ -64,32 +66,32 @@
       >
         <div 
           v-if="isMenuOpen" 
-          class="absolute top-0 left-0 w-full h-screen bg-white md:hidden flex flex-col pt-24 px-6 space-y-6 overflow-y-auto"
+          class="absolute top-0 left-0 w-full h-screen bg-sand md:hidden flex flex-col pt-24 px-6 space-y-6 overflow-y-auto"
         >
           <div class="flex flex-col space-y-4">
-            <NuxtLink to="/rooms" @click="isMenuOpen = false" class="text-2xl font-serif text-driftwood hover:text-coral border-b border-sand pb-4">Rooms</NuxtLink>
-            <NuxtLink to="/packages" @click="isMenuOpen = false" class="text-2xl font-serif text-driftwood hover:text-coral border-b border-sand pb-4">Packages</NuxtLink>
-            <NuxtLink to="/gallery" @click="isMenuOpen = false" class="text-2xl font-serif text-driftwood hover:text-coral border-b border-sand pb-4">Gallery</NuxtLink>
-            <NuxtLink to="/about" @click="isMenuOpen = false" class="text-2xl font-serif text-driftwood hover:text-coral border-b border-sand pb-4">About</NuxtLink>
+            <NuxtLink to="/rooms" @click="isMenuOpen = false" class="text-2xl font-serif text-deep-ocean hover:text-aqua border-b border-ocean-light/10 pb-4">Rooms</NuxtLink>
+            <NuxtLink to="/packages" @click="isMenuOpen = false" class="text-2xl font-serif text-deep-ocean hover:text-aqua border-b border-ocean-light/10 pb-4">Packages</NuxtLink>
+            <NuxtLink to="/gallery" @click="isMenuOpen = false" class="text-2xl font-serif text-deep-ocean hover:text-aqua border-b border-ocean-light/10 pb-4">Gallery</NuxtLink>
+            <NuxtLink to="/about" @click="isMenuOpen = false" class="text-2xl font-serif text-deep-ocean hover:text-aqua border-b border-ocean-light/10 pb-4">About</NuxtLink>
           </div>
 
           <div v-if="!user" class="flex flex-col gap-4 pt-4">
             <NuxtLink to="/login" @click="isMenuOpen = false">
-              <UiButton variant="ghost" class="w-full text-xl py-4 border-2 border-sand">Login</UiButton>
+              <UiButton variant="ghost" class="w-full text-xl py-4 border-2 border-ocean-light/20">Login</UiButton>
             </NuxtLink>
             <NuxtLink to="/register" @click="isMenuOpen = false">
-              <UiButton variant="coral" class="w-full text-xl py-4 shadow-lg">Join Paradise 🌊</UiButton>
+              <UiButton variant="cta" class="w-full text-xl py-4 shadow-lg shadow-sunset-gold/20">Book Your Stay 🌊</UiButton>
             </NuxtLink>
           </div>
           
           <div v-else class="flex flex-col gap-4 pt-4">
             <NuxtLink :to="isAdmin ? '/admin' : '/dashboard/bookings'" @click="isMenuOpen = false">
-              <UiButton variant="primary" class="w-full text-xl py-4 shadow-lg">
-                {{ isAdmin ? '🛡️ Admin Dashboard' : '🌴 My Island Stay' }}
+              <UiButton variant="primary" class="w-full text-xl py-4 shadow-lg shadow-deep-ocean/20">
+                {{ isAdmin ? '🛡️ Admin Dashboard' : '🌴 My Stay' }}
               </UiButton>
             </NuxtLink>
-            <button @click="handleLogout" class="text-coral-dark text-lg font-bold py-4 border-2 border-coral/10 rounded-xl bg-coral/5">
-              Logout from Paradise 🐚
+            <button @click="handleLogout" class="text-aqua-dark text-lg font-bold py-4 border-2 border-aqua/10 rounded-xl bg-aqua/5">
+              Logout 🐚
             </button>
           </div>
 

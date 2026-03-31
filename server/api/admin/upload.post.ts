@@ -39,7 +39,7 @@ export default defineEventHandler(async (event) => {
 
   try {
     const uploadResponse = await cloudinary.uploader.upload(base64File, {
-      folder: 'whisper_of_waters',
+      folder: 'blue_haven_hotel',
       resource_type: 'image'
     });
 

@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { Package } from '~/../shared/types/package'
+import type { Room } from '~/../shared/types/room'
 
 const props = defineProps<{
   pkg?: Package
@@ -74,9 +75,9 @@ const handleSubmit = async () => {
 </script>
 
 <template>
-  <div class="bg-sand-light p-8 rounded-3xl border border-sand shadow-lg">
-    <h3 class="text-2xl font-serif text-driftwood-dark mb-6 flex items-center gap-2">
-      <span>🥥</span> Reserve Your Paradise
+  <div class="bg-sand p-8 rounded-3xl border border-sand-dark/30 shadow-lg">
+    <h3 class="text-2xl font-serif text-deep-ocean mb-6 flex items-center gap-2">
+      <span>⚓</span> Reserve Your Stay
     </h3>
     
     <form v-if="item" @submit.prevent="handleSubmit" class="space-y-6">
@@ -86,7 +87,7 @@ const handleSubmit = async () => {
           <input 
             v-model="form.checkIn" 
             type="date" 
-            class="w-full bg-white border border-sand rounded-xl p-3 focus:ring-2 focus:ring-ocean focus:border-transparent transition-all"
+            class="w-full bg-white border border-sand-dark/20 rounded-xl p-3 focus:ring-2 focus:ring-aqua focus:border-transparent transition-all outline-none"
             required
             :min="today"
           />
@@ -96,7 +97,7 @@ const handleSubmit = async () => {
           <input 
             v-model="form.checkOut" 
             type="date" 
-            class="w-full bg-white border border-sand rounded-xl p-3 focus:ring-2 focus:ring-ocean focus:border-transparent transition-all"
+            class="w-full bg-white border border-sand-dark/20 rounded-xl p-3 focus:ring-2 focus:ring-aqua focus:border-transparent transition-all outline-none"
             required
             :min="form.checkIn || today"
           />
@@ -106,20 +107,20 @@ const handleSubmit = async () => {
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>
           <label class="block text-sm font-bold text-driftwood mb-2 uppercase tracking-wide">Adults 👨‍👩‍👦</label>
-          <select v-model.number="form.guests.adults" class="w-full bg-white border border-sand rounded-xl p-3">
+          <select v-model.number="form.guests.adults" class="w-full bg-white border border-sand-dark/20 rounded-xl p-3 outline-none focus:ring-2 focus:ring-aqua">
             <option v-for="n in 5" :key="n" :value="n">{{ n }} Adults</option>
           </select>
         </div>
         <div>
           <label class="block text-sm font-bold text-driftwood mb-2 uppercase tracking-wide">Children 🧒</label>
-          <select v-model.number="form.guests.children" class="w-full bg-white border border-sand rounded-xl p-3">
+          <select v-model.number="form.guests.children" class="w-full bg-white border border-sand-dark/20 rounded-xl p-3 outline-none focus:ring-2 focus:ring-aqua">
             <option v-for="n in 6" :key="n-1" :value="n-1">{{ n-1 }} Children</option>
           </select>
         </div>
       </div>
 
       <!-- Price Breakdown -->
-      <div v-if="nights > 0" class="bg-white/50 p-4 rounded-2xl border border-white/50 backdrop-blur-sm">
+      <div v-if="nights > 0" class="bg-white/50 p-6 rounded-2xl border border-white shadow-inner">
         <div class="flex justify-between items-center mb-2 text-driftwood">
           <span>Stay Duration</span>
           <span class="font-bold">{{ nights }} Nights</span>
@@ -128,23 +129,23 @@ const handleSubmit = async () => {
           <span>Rate per Night</span>
           <span class="font-bold">${{ item.price }}</span>
         </div>
-        <div class="h-px bg-sand my-3"></div>
+        <div class="h-px bg-sand-dark/20 my-4"></div>
         <div class="flex justify-between items-center text-xl">
-          <span class="font-serif font-bold text-driftwood-dark">Total Price</span>
-          <span class="font-serif font-bold text-ocean-deep">${{ totalPrice }}</span>
+          <span class="font-serif font-bold text-deep-ocean">Total Price</span>
+          <span class="font-serif font-bold text-deep-ocean">${{ totalPrice }}</span>
         </div>
       </div>
 
       <UiButton 
         type="submit" 
-        variant="coral" 
-        class="w-full py-4 text-lg font-bold shadow-xl"
+        variant="cta" 
+        class="w-full py-4 text-lg font-bold shadow-xl shadow-sunset-gold/20"
         :loading="loading"
       >
-        Book My Paradise 🌴
+        Book My Stay ⚓
       </UiButton>
       
-      <p v-if="error" class="text-coral-dark text-center font-medium mt-4">{{ error }}</p>
+      <p v-if="error" class="text-red-500 text-center font-medium mt-4">{{ error }}</p>
     </form>
   </div>
 </template>

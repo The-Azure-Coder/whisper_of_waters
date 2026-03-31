@@ -1,41 +1,41 @@
 <template>
-  <div class="pt-24 pb-20 bg-shell/20">
-    <section class="bg-gradient-to-br from-ocean-deep via-ocean to-coral-dark py-28 text-white overflow-hidden relative">
+  <div class="pt-24 pb-20 bg-sand">
+    <section class="bg-gradient-to-br from-deep-ocean via-ocean-medium to-aqua py-28 text-white overflow-hidden relative">
       <div class="container mx-auto px-4 text-center relative z-10">
-        <h1 class="text-6xl md:text-8xl font-serif mb-8 drop-shadow-2xl tracking-tight italic">Whispers in Frames</h1>
-        <p class="text-2xl max-w-3xl mx-auto drop-shadow-lg font-sans tracking-widest uppercase opacity-90">
-          Capture the essence of our tropical sanctuary.
+        <h1 class="text-6xl md:text-8xl font-serif mb-8 drop-shadow-2xl tracking-tight italic">Haven in Frames</h1>
+        <p class="text-2xl max-w-3xl mx-auto drop-shadow-lg font-sans tracking-widest uppercase opacity-90 text-sky-blue">
+          Capture the essence of Blue Haven Hotel.
         </p>
       </div>
       <div class="absolute -bottom-10 -left-10 text-9xl opacity-20 transform -rotate-12 animate-pulse">🌴</div>
-      <div class="absolute -top-10 -right-10 text-9xl opacity-20 transform rotate-12 animate-bounce">🐚</div>
+      <div class="absolute -top-10 -right-10 text-9xl opacity-20 transform rotate-12 animate-bounce">⚓</div>
     </section>
 
     <section class="py-24">
       <div class="container mx-auto px-4">
         <div class="columns-1 sm:columns-2 lg:columns-3 gap-10 space-y-10">
           <div v-for="(img, i) in galleryImages" :key="i" 
-               class="break-inside-avoid rounded-[3rem] overflow-hidden shadow-2xl border-4 border-white group relative hover:shadow-coral/20 transition-all duration-500">
+               class="break-inside-avoid rounded-[3rem] overflow-hidden shadow-2xl border-4 border-white group relative hover:shadow-aqua/20 transition-all duration-500">
             <img 
               :src="img.url" 
               @error="handleImageError"
               class="w-full h-auto object-cover group-hover:scale-110 transition-transform duration-1000" 
               :alt="img.alt" 
             />
-            <div class="absolute inset-0 bg-gradient-to-t from-ocean-deep/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-10">
+            <div class="absolute inset-0 bg-gradient-to-t from-deep-ocean/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-10">
               <div class="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
                 <p class="text-white font-serif text-2xl mb-2 italic">{{ img.alt }}</p>
-                <div class="w-12 h-1 bg-coral rounded-full"></div>
+                <div class="w-12 h-1 bg-aqua rounded-full"></div>
               </div>
             </div>
           </div>
         </div>
         
         <div class="mt-24 text-center">
-          <h3 class="text-4xl font-serif text-driftwood-dark mb-10 italic">"Paradise is not a place, it's a feeling captured in time."</h3>
+          <h3 class="text-4xl font-serif text-deep-ocean mb-10 italic">"Paradise is not a place, it's a feeling captured in time."</h3>
           <NuxtLink to="/packages">
-            <UiButton variant="coral" class="px-16 py-6 text-2xl font-bold rounded-full shadow-2xl hover:scale-105 transition-transform">
-              Find Your Frame 🌊
+            <UiButton variant="cta" class="px-16 py-6 text-2xl font-bold rounded-full shadow-2xl shadow-sunset-gold/20 hover:scale-105 transition-transform">
+              Find Your Escape ⚓
             </UiButton>
           </NuxtLink>
         </div>
@@ -65,5 +65,9 @@ const handleImageError = (event: Event) => {
 
 definePageMeta({
   layout: 'default'
+})
+
+useHead({
+  title: 'Gallery | Blue Haven Hotel'
 })
 </script>

@@ -1,6 +1,6 @@
-# Whisper of Waters - Nuxt 4 (No Payments)
+# Blue Haven Hotel - Nuxt 4 (No Payments)
 
-A luxury tropical hotel booking platform built with Nuxt 4, featuring a manual booking confirmation flow and a vibrant beach-paradise aesthetic.
+A premium coastal hotel booking platform built with Nuxt 4, featuring a manual booking confirmation flow and a vibrant "Blue Haven" coastal aesthetic.
 
 ## 🚀 Quick Start
 
@@ -15,14 +15,14 @@ A luxury tropical hotel booking platform built with Nuxt 4, featuring a manual b
    npm install
    ```
 3. **Setup Database**:
-   Create a database named `whisper_of_waters` and run the schema:
+   Create a database named `blue_haven_hotel` and run the schema:
    ```bash
-   psql -d whisper_of_waters -f database/schema.sql
+   psql -d blue_haven_hotel -f database/schema.sql
    ```
 4. **Environment Variables**:
    Create a `.env` file in the root:
    ```bash
-   DATABASE_URL=postgresql://user:pass@localhost:5432/whisper_of_waters
+   DATABASE_URL=postgresql://user:pass@localhost:5432/blue_haven_hotel
    JWT_SECRET=your-secret-key-change-this
    ```
 
@@ -39,7 +39,7 @@ npm run typecheck
 ```
 User creates booking → [PENDING] (⏳)
                            ↓
-                    Admin confirms → [CONFIRMED] (🌊) → Stay occurs → [COMPLETED] (🌴)
+                    Admin confirms → [CONFIRMED] (⚓) → Stay occurs → [COMPLETED] (🌴)
                            ↓
                     Admin rejects  → [CANCELLED] (🌅)
                     OR user cancels → [CANCELLED] (🌅)

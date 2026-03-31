@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: whisper-water
+    name: blue-haven-hotel
     runtime: node
     plan: free
     branch: deploy

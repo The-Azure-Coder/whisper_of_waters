@@ -1,43 +1,43 @@
 :root {
-  /* Core Colors */
-  --sand: #F5E6D3;        /* Warm sandy beaches */
-  --sand-light: #FFF5E6;
-  --sand-dark: #E6D7C3;
+  /* Core Colors - Blue Haven Hotel Theme */
+  --deep-ocean: #1A365D;        /* Primary UI color */
+  --ocean-medium: #2C5282;
+  --ocean-light: #4299E1;
   
-  --ocean: #4A90E2;        /* Bright tropical ocean */
-  --ocean-light: #7BB4FF;
-  --ocean-deep: #2C3E8F;
+  --aqua: #38B2AC;              /* Secondary accents / Interaction */
+  --aqua-light: #81E6D9;
+  --aqua-dark: #2C7A7B;
   
-  --coral: #FF7F6B;        /* Vibrant coral reef */
-  --coral-light: #FF9F8C;
-  --coral-dark: #E65F4B;
+  --sunset-gold: #D69E2E;       /* Highlight / CTA elements */
+  --sunset-light: #F6E05E;
+  --sunset-dark: #B7791F;
   
-  --palm: #2E8B57;         /* Lush palm leaves */
-  --palm-light: #4CAF7A;
-  --palm-dark: #1B5E3F;
+  --sand: #FDF6E3;              /* Backgrounds / Soft Sand */
+  --sand-light: #FFFAF0;
+  --sand-dark: #EDF2F7;
   
-  --sunset: #FFB347;       /* Golden sunset glow */
-  --sunset-light: #FFD700;
-  --sunset-dark: #F28500;
+  --white: #FFFFFF;             /* Clean surfaces */
+  --sky-blue: #EBF8FF;          /* Subtle UI accents */
   
-  --shell: #FFF0E8;        /* Seashell white */
-  --driftwood: #8B7355;    /* Weathered wood */
+  --driftwood: #4A5568;         /* Weathered wood / Text */
   
   /* Gradients */
-  --gradient-beach: linear-gradient(135deg, var(--sand), var(--ocean-light));
-  --gradient-sunset: linear-gradient(135deg, var(--sunset), var(--coral), var(--ocean-deep));
+  --gradient-ocean: linear-gradient(135deg, var(--deep-ocean), var(--ocean-medium));
+  --gradient-aqua: linear-gradient(135deg, var(--aqua), var(--ocean-light));
+  --gradient-sunset: linear-gradient(135deg, var(--sunset-gold), var(--sunset-light));
+  --gradient-wave: linear-gradient(180deg, var(--deep-ocean), var(--ocean-medium), var(--sand));
   
   /* Status Colors */
-  --status-pending: var(--sunset);
-  --status-confirmed: var(--ocean);
-  --status-completed: var(--palm);
-  --status-cancelled: var(--coral-dark);
+  --status-pending: var(--sunset-gold);
+  --status-confirmed: var(--aqua);
+  --status-completed: #48BB78;  /* Tropical green */
+  --status-cancelled: #F56565;  /* Soft coral red */
 }
 
 body {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   color: var(--driftwood);
-  background-color: var(--shell);
+  background-color: var(--sand);
   margin: 0;
   padding: 0;
   overflow-x: hidden;
@@ -53,22 +53,71 @@ img {
 
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Playfair Display', serif;
+  color: var(--deep-ocean);
+}
+
+/* UI Elements */
+.card {
+  background: var(--white);
+  border-radius: 1rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  padding: 1.5rem;
 }
 
 .btn-primary {
-  background-color: var(--coral);
+  background: var(--gradient-aqua);
   color: white;
+  border-radius: 0.75rem;
+  transition: all 0.3s ease;
+  border: none;
+  font-weight: 600;
 }
 
 .btn-primary:hover {
-  background-color: var(--coral-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(56, 178, 172, 0.4);
 }
 
 .btn-secondary {
-  background-color: var(--ocean);
-  color: white;
+  background: transparent;
+  color: var(--deep-ocean);
+  border: 2px solid var(--deep-ocean);
+  border-radius: 0.75rem;
+  transition: all 0.3s ease;
+  font-weight: 600;
 }
 
 .btn-secondary:hover {
-  background-color: var(--ocean-deep);
+  background: var(--sky-blue);
+  box-shadow: 0 0 8px rgba(66, 153, 225, 0.2);
+}
+
+.btn-cta {
+  background: var(--sunset-gold);
+  color: white;
+  border-radius: 0.75rem;
+  transition: all 0.3s ease;
+  border: none;
+  font-weight: 700;
+}
+
+.btn-cta:hover {
+  background: var(--sunset-dark);
+  transform: scale(1.05);
+}
+
+/* Navigation */
+.navbar-custom {
+  background: var(--deep-ocean);
+  color: white;
+  padding: 1rem 2rem;
+}
+
+.nav-link {
+  color: var(--sky-blue);
+  transition: color 0.2s ease;
+}
+
+.nav-link:hover {
+  color: var(--aqua-light);
 }

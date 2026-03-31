@@ -6,14 +6,14 @@
     ]"
     :disabled="disabled || loading"
   >
-    <span v-if="loading" class="animate-spin text-xl">🌊</span>
+    <span v-if="loading" class="animate-spin text-xl">⚓</span>
     <slot />
   </button>
 </template>
 
 <script setup lang="ts">
 const props = withDefaults(defineProps<{
-  variant?: 'primary' | 'secondary' | 'coral' | 'ghost' | 'outline'
+  variant?: 'primary' | 'secondary' | 'cta' | 'ghost' | 'outline'
   disabled?: boolean
   loading?: boolean
 }>(), {
@@ -24,12 +24,12 @@ const props = withDefaults(defineProps<{
 
 const variantClass = computed(() => {
   switch (props.variant) {
-    case 'primary': return 'bg-ocean text-white hover:bg-ocean-deep'
-    case 'secondary': return 'bg-palm text-white hover:bg-palm-dark'
-    case 'coral': return 'bg-coral text-white hover:bg-coral-dark'
-    case 'ghost': return 'bg-transparent text-driftwood hover:bg-sand-light'
-    case 'outline': return 'border-2 border-coral text-coral hover:bg-coral hover:text-white'
-    default: return 'bg-ocean text-white hover:bg-ocean-deep'
+    case 'primary': return 'bg-gradient-to-r from-aqua to-ocean-light text-white shadow-lg shadow-aqua/20'
+    case 'secondary': return 'border-2 border-deep-ocean text-deep-ocean hover:bg-sky-blue'
+    case 'cta': return 'bg-sunset-gold text-white hover:bg-sunset-dark shadow-lg shadow-sunset-gold/20'
+    case 'ghost': return 'bg-transparent text-driftwood hover:bg-sand-dark'
+    case 'outline': return 'border-2 border-aqua text-aqua hover:bg-aqua hover:text-white'
+    default: return 'bg-deep-ocean text-white hover:bg-ocean-medium'
   }
 })
 </script>

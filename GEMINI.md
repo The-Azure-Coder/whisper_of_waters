@@ -1,5 +1,4 @@
-```markdown
-# 🤖 AI DEVELOPMENT GUIDELINES (Nuxt 4 - No Payments)
+# AI DEVELOPMENT GUIDELINES (Nuxt 4 - No Payments)
 
 ## 📋 AFTER EVERY GENERATION, YOU MUST PROVIDE:
 
@@ -88,7 +87,7 @@ npm run build
 
 ### README.md MUST include:
 ````markdown
-# Whisper of Waters - Nuxt 4 (No Payments)
+# Blue Haven Hotel - Nuxt 4 (No Payments)
 
 ## 🚀 Quick Start
 
@@ -100,14 +99,14 @@ npm run build
 ```bash
 # Clone repository
 git clone <repo>
-cd whisper-of-waters
+cd blue-haven-hotel
 
 # Install dependencies
 npm install
 
 # Setup database
-createdb whisper_of_waters
-psql -d whisper_of_waters -f database/schema.sql
+createdb blue_haven_hotel
+psql -d blue_haven_hotel -f database/schema.sql
 
 # Create .env file (see .env.example)
 cp .env.example .env
@@ -132,7 +131,7 @@ npm run task booking-reminder
 ### Environment Variables
 ```bash
 # Required
-DATABASE_URL=postgresql://user:pass@localhost:5432/whisper_of_waters
+DATABASE_URL=postgresql://user:pass@localhost:5432/blue_haven_hotel
 JWT_SECRET=your-secret-key-change-this
 
 # Optional (for email notifications)
@@ -506,4 +505,3 @@ npm run typecheck
 - Include payment processing code
 - Allow invalid status transitions
 - Mix up user and admin permissions
-```

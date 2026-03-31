@@ -1,14 +1,14 @@
 <template>
-  <div class="pt-32 pb-20 min-h-screen bg-shell/30">
+  <div class="pt-32 pb-20 min-h-screen bg-sand">
     <div class="container mx-auto px-4">
       <!-- Dashboard Header -->
       <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-12">
         <div>
-          <h1 class="text-4xl md:text-5xl font-serif text-driftwood-dark mb-2">My Tropical Stays</h1>
-          <p class="text-driftwood font-medium">Welcome back, <span class="text-ocean-deep font-bold">{{ user?.firstName || 'Traveler' }}</span> 🌴</p>
+          <h1 class="text-4xl md:text-5xl font-serif text-deep-ocean mb-2">My Stays</h1>
+          <p class="text-driftwood font-medium">Welcome back, <span class="text-deep-ocean font-bold">{{ user?.firstName || 'Traveler' }}</span> ⚓</p>
         </div>
         <NuxtLink to="/packages">
-          <UiButton variant="coral">Book New Escape 🌊</UiButton>
+          <UiButton variant="cta">Book New Escape ⚓</UiButton>
         </NuxtLink>
       </div>
 
@@ -18,22 +18,22 @@
       </div>
 
       <div v-else-if="bookings.length > 0" class="space-y-8">
-        <BookingsBookingCard 
-          v-for="booking in bookings" 
-          :key="booking.id" 
+        <BookingsBookingCard
+          v-for="booking in bookings"
+          :key="booking.id"
           :booking="booking"
           @cancel="handleCancel"
         />
       </div>
 
-      <div v-else class="bg-white rounded-[3rem] p-20 text-center shadow-xl border border-sand/30">
-        <div class="text-8xl mb-8">🐚</div>
-        <h2 class="text-3xl font-serif text-driftwood-dark mb-4">No Island Memories Yet</h2>
-        <p class="text-driftwood text-lg mb-10 max-w-md mx-auto">
-          Your tropical adventure hasn't started. Explore our luxury packages and find your perfect shore.
+      <div v-else class="bg-white rounded-[3rem] p-20 text-center shadow-xl border border-sand-dark/20">
+        <div class="text-8xl mb-8">⚓</div>
+        <h2 class="text-3xl font-serif text-deep-ocean mb-4">No Island Memories Yet</h2>
+        <p class="text-driftwood text-lg mb-10 max-w-md mx-auto leading-relaxed">
+          Your coastal adventure hasn't started. Explore our luxury packages and find your perfect haven.
         </p>
         <NuxtLink to="/packages">
-          <UiButton variant="primary" class="px-10 py-4 text-lg">Explore Packages 🌴</UiButton>
+          <UiButton variant="primary" class="px-10 py-4 text-lg">Explore Packages ⚓</UiButton>
         </NuxtLink>
       </div>
     </div>
@@ -55,15 +55,22 @@ onMounted(async () => {
 })
 
 const handleCancel = async (id: number) => {
-  if (confirm('Are you sure you want to cancel this paradise escape? 🌅')) {
+  if (confirm('Are you sure you want to cancel this stay? 🌅')) {
     const res = await cancelBooking(id)
     if (!res.success) {
       alert(res.error)
+    } else {
+      await fetchBookings()
     }
   }
 }
 
 definePageMeta({
+  middleware: 'auth',
   layout: 'default'
+})
+
+useHead({
+  title: 'My Dashboard | Blue Haven Hotel'
 })
 </script>
