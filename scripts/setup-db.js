@@ -28,7 +28,10 @@ const baseConnection = databaseUrl.replace(/\/[^\/\?]+(\?.*)?$/, '/postgres$1');
 
 async function setup() {
   console.log(`Connecting to Postgres to ensure ${dbName} exists...`);
-  const adminPool = new pg.Pool({ connectionString: baseConnection });
+  const adminPool = new pg.Pool({ 
+    connectionString: baseConnection,
+    ssl: { rejectUnauthorized: false }
+  });
   const adminClient = await adminPool.connect();
   
   try {
@@ -47,17 +50,34 @@ async function setup() {
   }
 
   console.log(`Connecting to ${dbName}...`);
-  const pool = new pg.Pool({ connectionString: databaseUrl });
+  const pool = new pg.Pool({ 
+    connectionString: databaseUrl,
+    ssl: { rejectUnauthorized: false }
+  });
   const client = await pool.connect();
   
   try {
-    console.log('Executing schema.sql...');
-    const schemaPath = path.join(__dirname, '../database/schema.sql');
-    const schemaSql = fs.readFileSync(schemaPath, 'utf8');
-    await client.query(schemaSql);
-    console.log('Database setup successful!');
+    const migrations = [
+      '../database/schema.sql',
+      '../database/migration_v2.sql',
+      '../database/migration_v3.sql',
+      '../database/migration_v4.sql',
+      '../database/migration_v5.sql'
+    ];
+
+    for (const migration of migrations) {
+      const migrationPath = path.join(__dirname, migration);
+      if (fs.existsSync(migrationPath)) {
+        console.log(`Executing ${migration}...`);
+        const migrationSql = fs.readFileSync(migrationPath, 'utf8');
+        await client.query(migrationSql);
+      } else {
+        console.warn(`Migration file not found: ${migrationPath}`);
+      }
+    }
+    console.log('Database setup and migrations successful!');
   } catch (err) {
-    console.error('Error setting up database:', err);
+    console.error('Error setting up database:', err.message);
   } finally {
     client.release();
     await pool.end();

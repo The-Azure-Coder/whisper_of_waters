@@ -7,14 +7,19 @@ ALTER TABLE users ADD COLUMN IF NOT EXISTS last_name TEXT;
 ALTER TABLE users ADD COLUMN IF NOT EXISTS created_at TIMESTAMP DEFAULT NOW();
 
 -- 2. Migrate data (try to split name if it exists)
-UPDATE users 
-SET 
-  first_name = split_part(name, ' ', 1),
-  last_name = CASE 
-                WHEN position(' ' in name) > 0 THEN substring(name from position(' ' in name) + 1)
-                ELSE ''
-              END
-WHERE first_name IS NULL;
+DO $$
+BEGIN
+    IF EXISTS (SELECT 1 FROM information_schema.columns WHERE table_name='users' AND column_name='name') THEN
+        UPDATE users 
+        SET 
+          first_name = split_part(name, ' ', 1),
+          last_name = CASE 
+                        WHEN position(' ' in name) > 0 THEN substring(name from position(' ' in name) + 1)
+                        ELSE ''
+                      END
+        WHERE first_name IS NULL;
+    END IF;
+END $$;
 
 -- 3. Apply constraints
 ALTER TABLE users ALTER COLUMN first_name SET NOT NULL;
