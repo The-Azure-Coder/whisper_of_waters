@@ -5,4 +5,5 @@ export interface Package {
   price: number
   features: string[]
   imageUrl: string
+  roomId?: number
 }

@@ -34,8 +34,8 @@
         <div>
           <h4 class="font-serif font-bold text-lg text-aqua-light mb-6">Paradise Awaits</h4>
           <ul class="space-y-4 text-sky-blue/70">
-            <li class="flex items-center gap-2"><span>📍</span> Blue Haven Bay, Tropical Isle</li>
-            <li class="flex items-center gap-2"><span>📞</span> +1 (555) BLUE-HAVEN</li>
+            <li class="flex items-center gap-2"><span>📍</span> 18 Jimmy Cliff Boulevard, Montego Bay</li>
+            <li class="flex items-center gap-2"><span>📞</span> +1 (876) BLUE-HAVEN</li>
             <li class="flex items-center gap-2"><span>✉️</span> stay@bluehavenhotel.com</li>
           </ul>
         </div>

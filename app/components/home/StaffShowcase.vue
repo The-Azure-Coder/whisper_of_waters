@@ -5,24 +5,34 @@
       <div class="mb-20">
         <div class="flex flex-col lg:flex-row items-center gap-12">
           <div class="lg:w-1/2 order-2 lg:order-1">
-            <span class="text-aqua font-bold uppercase tracking-widest text-sm mb-4 block">⚓ Coastal Luxury</span>
-            <h2 class="text-4xl md:text-5xl font-serif text-deep-ocean mb-6">Discover Our Paradise</h2>
+            <span class="text-aqua font-bold uppercase tracking-widest text-sm mb-4 block">⚓ Jamaican Hospitality</span>
+            <h2 class="text-4xl md:text-5xl font-serif text-deep-ocean mb-6">Experience Blue Haven</h2>
             <p class="text-driftwood text-lg leading-relaxed mb-8">
-              Experience the breath-taking beauty of Blue Haven Hotel. From our pristine private beach to our world-class dining and infinity pools, every detail is designed for your ultimate comfort and relaxation.
+              With 750 rooms and a dedicated team of 400 professionals, we are a cornerstone of luxury in Montego Bay. Our all-inclusive model ensures that every guest enjoys a unique, stress-free experience from check-in to check-out.
             </p>
+            <div class="grid grid-cols-2 gap-8 mb-10">
+              <div>
+                <h4 class="text-3xl font-serif text-deep-ocean mb-2">750+</h4>
+                <p class="text-driftwood/60 uppercase text-xs font-bold tracking-widest">Premium Rooms</p>
+              </div>
+              <div>
+                <h4 class="text-3xl font-serif text-sunset-gold mb-2">400</h4>
+                <p class="text-driftwood/60 uppercase text-xs font-bold tracking-widest">Expert Staff</p>
+              </div>
+            </div>
             <div class="grid grid-cols-2 gap-6">
               <div class="flex items-start gap-3">
-                <span class="text-2xl">🏖️</span>
+                <span class="text-2xl">🍽️</span>
                 <div>
-                  <h4 class="font-bold text-deep-ocean">Private Beach</h4>
-                  <p class="text-sm text-driftwood">Crystal clear waters</p>
+                  <h4 class="font-bold text-deep-ocean">Gourmet Dining</h4>
+                  <p class="text-sm text-driftwood">8 AM - 11 PM daily</p>
                 </div>
               </div>
               <div class="flex items-start gap-3">
-                <span class="text-2xl">🏊</span>
+                <span class="text-2xl">🐎</span>
                 <div>
-                  <h4 class="font-bold text-deep-ocean">Infinity Pool</h4>
-                  <p class="text-sm text-driftwood">Ocean-side relaxation</p>
+                  <h4 class="font-bold text-deep-ocean">Horseback Riding</h4>
+                  <p class="text-sm text-driftwood">Coastal adventures</p>
                 </div>
               </div>
             </div>
@@ -43,40 +53,49 @@
       <!-- Staff Section -->
       <div class="pt-20 border-t border-sand-dark/20">
         <div class="text-center mb-16">
-          <span class="text-aqua font-bold uppercase tracking-widest text-sm mb-4 block">👋 Warm Hospitality</span>
-          <h2 class="text-4xl md:text-5xl font-serif text-deep-ocean mb-6">Meet Our Dedicated Team</h2>
+          <span class="text-aqua font-bold uppercase tracking-widest text-sm mb-4 block">👋 Our Leadership</span>
+          <h2 class="text-4xl md:text-5xl font-serif text-deep-ocean mb-6">The Heart of Our Service</h2>
           <p class="text-driftwood text-lg max-w-2xl mx-auto">
-            Our exceptional staff is at the heart of the Blue Haven experience, committed to making your stay unforgettable with personalized service and a warm smile.
+            Led by experts from the University of the Commonwealth Caribbean and industry veterans, our management team ensures every detail of your stay exceeds expectations.
           </p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-          <div class="relative group overflow-hidden rounded-[2rem] shadow-xl">
-            <img 
-              src="/images/hotel_staff.jpeg" 
-              alt="Our Professional Front Desk Team" 
-              class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-            />
-            <div class="absolute inset-0 bg-gradient-to-t from-deep-ocean/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-8">
-              <div>
-                <h4 class="text-white text-2xl font-serif mb-2">Concierge Excellence</h4>
-                <p class="text-sky-blue">Ready to assist with your every need, day or night.</p>
-              </div>
-            </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <!-- Finance Manager -->
+          <div class="bg-sand-light p-8 rounded-[2rem] shadow-lg border border-sand-dark/30 hover:-translate-y-2 transition-transform duration-300">
+            <div class="w-20 h-20 bg-deep-ocean rounded-2xl mb-6 flex items-center justify-center text-white text-3xl">💼</div>
+            <h4 class="text-xl font-serif text-deep-ocean mb-1">Mr. Dacarthy Brown</h4>
+            <p class="text-aqua text-sm font-bold uppercase mb-4 tracking-wider">Finance Manager</p>
+            <p class="text-driftwood/70 text-sm leading-relaxed">
+              Master's in Accounting and Finance (UCC). Oversees financial planning to ensure sustainable growth and profitability.
+            </p>
           </div>
-          <div class="relative group overflow-hidden rounded-[2rem] shadow-xl">
-            <img 
-              src="/images/hotel_staff2.jpeg" 
-              alt="Our Hospitality Service Staff" 
-              class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-            />
-            <div class="absolute inset-0 bg-gradient-to-t from-deep-ocean/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-8">
-              <div>
-                <h4 class="text-white text-2xl font-serif mb-2">Guest Relations Team</h4>
-                <p class="text-sky-blue">Committed to providing a seamless and personalized island experience.</p>
-              </div>
-            </div>
+
+          <!-- HR Manager -->
+          <div class="bg-sand-light p-8 rounded-[2rem] shadow-lg border border-sand-dark/30 hover:-translate-y-2 transition-transform duration-300">
+            <div class="w-20 h-20 bg-sunset-gold rounded-2xl mb-6 flex items-center justify-center text-white text-3xl">👥</div>
+            <h4 class="text-xl font-serif text-deep-ocean mb-1">Tyrese Morgan</h4>
+            <p class="text-aqua text-sm font-bold uppercase mb-4 tracking-wider">HR Manager</p>
+            <p class="text-driftwood/70 text-sm leading-relaxed">
+              Fosters a positive work environment, overseeing talent acquisition and staff development for our 400 team members.
+            </p>
           </div>
+
+          <!-- Marketing Manager -->
+          <div class="bg-sand-light p-8 rounded-[2rem] shadow-lg border border-sand-dark/30 hover:-translate-y-2 transition-transform duration-300">
+            <div class="w-20 h-20 bg-aqua rounded-2xl mb-6 flex items-center justify-center text-white text-3xl">📱</div>
+            <h4 class="text-xl font-serif text-deep-ocean mb-1">Mahalia Drummond</h4>
+            <p class="text-aqua text-sm font-bold uppercase mb-4 tracking-wider">Marketing Manager</p>
+            <p class="text-driftwood/70 text-sm leading-relaxed">
+              Former influencer turned UCC graduate, she implements digital strategies to showcase our unique Jamaican experience.
+            </p>
+          </div>
+        </div>
+        
+        <div class="mt-12 text-center">
+          <p class="text-driftwood/50 text-sm italic">
+            Part of a leadership team of 11 dedicated department heads including Siria & Syara Chambers, Stephan Green, and Alissa Fryers.
+          </p>
         </div>
       </div>
     </div>

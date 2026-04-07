@@ -10,6 +10,7 @@
     "postinstall": "nuxt prepare",
     "typecheck": "nuxt typecheck",
     "db:setup": "node scripts/setup-db.js",
+    "db:seed": "node scripts/seed-db.js",
     "start": "node .output/server/index.mjs"
   },
   "dependencies": {
