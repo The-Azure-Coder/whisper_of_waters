@@ -6,7 +6,13 @@ onMounted(async () => {
 })
 
 const parseFeatures = (features: any) => {
-  if (typeof features === 'string') return JSON.parse(features)
+  if (typeof features === 'string') {
+    try {
+      return JSON.parse(features)
+    } catch (e) {
+      return []
+    }
+  }
   return features || []
 }
 
@@ -20,25 +26,30 @@ definePageMeta({
 })
 
 useHead({
-  title: 'Luxury Rooms | Blue Haven Hotel'
+  title: 'Luxury Rooms | Blue Haven Hotel Montego Bay',
+  meta: [
+    { name: 'description', content: 'Explore our 750 luxury rooms and suites in Montego Bay. Experience comfort, culture, and coastal elegance.' }
+  ]
 })
 </script>
 
 <template>
   <div class="pt-24 pb-20 bg-sand">
+    <!-- Header -->
     <section class="bg-gradient-to-r from-deep-ocean to-ocean-medium py-20 text-white">
       <div class="container mx-auto px-4 text-center">
-        <h1 class="text-5xl md:text-7xl font-serif mb-6 drop-shadow-lg">Luxury Coastal Rooms</h1>
+        <h1 class="text-5xl md:text-7xl font-serif mb-6 drop-shadow-lg text-white">Coastal Luxury Rooms</h1>
         <p class="text-xl max-w-2xl mx-auto drop-shadow-md text-sky-blue">
-          Wake up to the gentle rhythm of the tides and the warmth of the golden sun.
+          750 sanctuaries designed for comfort and peace. Experience the authenticity of Jamaica in every stay.
         </p>
       </div>
     </section>
 
+    <!-- Rooms Grid -->
     <section class="py-20">
       <div class="container mx-auto px-4">
         <div v-if="loading" class="grid grid-cols-1 md:grid-cols-2 gap-12">
-          <div v-for="i in 2" :key="i" class="animate-pulse bg-white rounded-3xl h-96 shadow-lg"></div>
+          <div v-for="i in 2" :key="i" class="animate-pulse bg-white rounded-3xl h-96 shadow-lg shadow-sand-dark/10"></div>
         </div>
         
         <div v-else-if="error" class="text-center py-20 bg-white rounded-[3rem] shadow-xl border border-deep-ocean/10">
@@ -50,13 +61,13 @@ useHead({
         
         <div v-else-if="rooms.length > 0" class="grid grid-cols-1 md:grid-cols-2 gap-12">
           <div v-for="room in rooms" :key="room.id" 
-               class="bg-white rounded-[3rem] overflow-hidden shadow-xl border border-sand-dark/20 flex flex-col group relative">
+               class="bg-white rounded-[3rem] overflow-hidden shadow-xl border border-sand-dark/20 flex flex-col group relative hover:-translate-y-2 transition-all duration-500">
             
-            <!-- Booking Status Badge -->
+            <!-- Availability Badge -->
             <div class="absolute top-6 left-6 z-10">
               <UiBadge 
-                :status="room.status === 'available' && !room.isBooked ? 'confirmed' : undefined"
-                :variant="room.status !== 'available' ? 'outline' : (room.isBooked ? 'outline' : 'success')" 
+                :status="room.status === 'available' && !room.isBooked ? 'confirmed' : 'pending'"
+                :variant="room.status !== 'available' || room.isBooked ? 'outline' : 'success'" 
                 class="text-sm px-4 py-2 font-bold backdrop-blur-md"
               >
                 {{ 
@@ -75,8 +86,8 @@ useHead({
                    @error="handleImageError" />
               <div class="absolute inset-0 bg-gradient-to-t from-deep-ocean/40 to-transparent"></div>
               <div class="absolute bottom-6 right-6 text-white text-right">
-                <p class="text-sm uppercase tracking-widest font-bold opacity-80">Starting from</p>
-                <p class="text-3xl font-serif text-white">${{ room.price }} <span class="text-lg opacity-80">/ night</span></p>
+                <p class="text-sm uppercase tracking-widest font-bold opacity-80">Room Only Rate</p>
+                <p class="text-4xl font-serif text-white">${{ room.price }} <span class="text-lg opacity-80">/ night</span></p>
               </div>
             </div>
             
@@ -84,16 +95,20 @@ useHead({
               <h3 class="text-3xl font-serif text-deep-ocean mb-4 group-hover:text-aqua transition-colors">{{ room.name }}</h3>
               <p class="text-driftwood mb-8 text-lg leading-relaxed line-clamp-3">{{ room.description }}</p>
               
-              <div class="mt-auto flex items-center justify-between pt-6 border-t border-sand-dark/20">
+              <div class="mt-auto pt-8 border-t border-sand-dark/20 flex items-center justify-between gap-4">
                 <div class="flex flex-wrap gap-2">
                   <span v-for="feat in parseFeatures(room.features).slice(0, 3)" :key="feat" class="bg-sand text-deep-ocean text-xs font-bold px-3 py-1 rounded-full border border-sand-dark/20">
                     ⚓ {{ feat }}
                   </span>
                 </div>
                 
-                <NuxtLink :to="`/rooms/${room.id}`">
-                  <UiButton :variant="room.status !== 'available' || room.isBooked ? 'outline' : 'primary'" class="px-8">
-                    {{ room.status !== 'available' || room.isBooked ? 'View Details' : 'Book Now ⚓' }}
+                <NuxtLink :to="`/rooms/${room.id}`" class="shrink-0">
+                  <UiButton 
+                    :variant="room.status !== 'available' || room.isBooked ? 'outline' : 'cta'" 
+                    class="px-8 font-bold"
+                    as="div"
+                  >
+                    {{ room.status !== 'available' || room.isBooked ? 'View Details' : 'Book Room ⚓' }}
                   </UiButton>
                 </NuxtLink>
               </div>
@@ -103,7 +118,7 @@ useHead({
 
         <div v-else class="text-center py-20 bg-white rounded-[3rem] shadow-xl border border-sand-dark/20">
           <h2 class="text-3xl font-serif text-deep-ocean mb-4">No Rooms Available Currently ⚓</h2>
-          <p class="text-driftwood mb-8">Our hotel is currently at full capacity. Please check back soon.</p>
+          <p class="text-driftwood mb-8">All 750 of our Montego Bay sanctuaries are currently occupied.</p>
           <NuxtLink to="/packages">
             <UiButton variant="primary">Explore Packages ⚓</UiButton>
           </NuxtLink>
